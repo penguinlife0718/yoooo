@@ -31,20 +31,20 @@ button{
   margin: 1rem;
   font-size: 1.5rem;
   padding: 1rem .5rem;
-  transition: all .07s ease;
+  transition: all 1s ease;
   width: 4rem;
   text-align: center;
   color: white;
   background: rgba(0,0,0,0.4);
   text-shadow: 0 0 .5rem black;
+  
 }
 
 .playing {
+  animation: shockwaveJump 1s ;
   transform: scale(1.1);
   border-color: #ffc600;
   box-shadow: 0 0 1rem #ffc600;
-  animation: shockwaveJump 1s ease-out infinite;
-  
 }
 
 kbd {
@@ -61,10 +61,7 @@ kbd {
 
 
 
-
-
-
-@-webkit-keyframes shockwaveJump {
+@keyframes shockwaveJump {
   0% {
     -webkit-transform: scale(1);
             transform: scale(1);
