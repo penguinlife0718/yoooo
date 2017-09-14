@@ -1,6 +1,6 @@
 html {
   font-size: 10px;
-  background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center;
+  /* background: url(http://i.imgur.com/b9r5sEL.jpg) bottom center; */
   background-size: cover;
 }
 body,html {
@@ -39,14 +39,20 @@ button{
   text-shadow: 0 0 .5rem black;
   
 }
+.colorI{
+  transform: scale(1.1);
+  background: rgba(176, 52, 52, 0.40);
+}
+
 
 .playing {
-  animation: shockwaveJump 1s ;
   transform: scale(1.1);
   border-color: #ffc600;
   box-shadow: 0 0 1rem #ffc600;
 }
-
+.playing2 {
+  animation: shockwaveJump 1s ;
+}
 kbd {
   display: block;
   font-size: 4rem;

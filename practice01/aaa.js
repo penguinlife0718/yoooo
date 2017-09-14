@@ -1,3 +1,10 @@
+let score=0;
+let colorButton=0;
+(function changeScore(p){
+    score +=p;
+    document.querySelector('.score').innerHTML = ''+score;
+})(0)
+
 function playSound(e){
     const keyCode=e.keyCode;
     const key = document.querySelector(`div[data-key='${keyCode}']`)
@@ -6,33 +13,113 @@ function playSound(e){
     key.classList.add('playing');
     key.classList.add('playing2');
     audio.play();
-    setTimeout(()=>key.classList.remove('playing'),1000)
-    setTimeout(()=>key.classList.remove('playing2'),1000)
+    setTimeout(()=>key.classList.remove('playing','playing2'),1000)
+    key.classList.remove('colorI');
+
     
 }
+window.addEventListener('keydown',playSound)
+
+
 function play(e){
     const key = document.querySelector(`div[data-key='${e}']`)
-    const audio = document.querySelector(`audio[data-key='${e}']`)
-    console.log(key);
+    const audio = document.querySelector(`audio[data-key='${e}']`) 
     key.classList.add('playing');
+    key.classList.add('playing2');
     audio.play();
+    setTimeout(()=>key.classList.remove('playing','playing2'),1000)
 }
 
-function removePlaying(e){
-    if(e.propertyName == "box-shadow"){
-        this.classList.remove('playing');
-    console.log(e.propertyName);
+
+
+function playingD(e){
+    const key = document.querySelector(`div[data-key='${e}']`)
+    const audio = document.querySelector(`audio[data-key='${e}']`)
+    key.classList.remove('colorI');
+
+
     
-    }
+   
+}
+window.addEventListener('keydown',playingD)
+
+function gameStart(){
+
+    const rands =[81,87,69,65,83,68,90,88,67];
+    let index;
+    let key;
+    var start = setInterval(function(){
+        // index = Math.random() * 100 % 9;
+        // index = Math.floor(index)
+        // key = document.querySelector(`div[data-key='${rands[index]}'`)
+        // key.classList.add('colorI');
+        do{
+            index = Math.random() * 100 % 9;
+            index = Math.floor(index)
+            key = document.querySelector(`div[data-key='${rands[index]}'`)
+        }while(key.classList.contains("colorI") );
+        key.classList.add('colorI');
+        colorButton+=1;
+    },500)
+    
+    myStopFunction(start);
 
 }
-const keys = document.querySelectorAll('.key');
+
+function myStopFunction(s) {
+
+    clearInterval(s);
+}
+
+// var run =self.setInterval("getIndex()",50)
+// function getIndex(rands){
+//     const rands =[81,87,69,65,83,68,90,88,67];
+//     let index = Math.random * 100 % 9
+//     return rands[index]; 
+// }
+
+// function removePlaying(e){
+//     if(e.propertyName == 'box-shadow'){
+//         this.classList.remove('playing');
+//         this.classList.remove('playing2');
+//     console.log(e.propertyName);
+    
+//     }
+
+// }
+// const keys = document.querySelectorAll('.key');
 // keys.forEach(function(key){key.addEventListener('transitionend',removePlaying)})
 
 
 
-window.addEventListener('keydown',playSound)
 
 
 
 
+
+
+
+
+
+
+// function playSound(e){
+//     const keyCode=e.keyCode;
+//     const key =document.querySelector(div[data-key='${keyCode}']);
+//     const audio =document.querySelector(audio[data-key='${keyCode}']);
+//     if(!audio){return;}
+//     console.log(key);
+//     key.classList.add('playing');
+//     audio.currentTime=0;
+//     audio.play();
+//    }
+   
+//    function removePlaying(e){
+//      if(e.propertyName=="transform"){
+//        this.classList.remove('playing');
+//      }
+//    }
+//    const keys=document.querySelectorAll('.key');
+//    keys.forEach(function(key){
+//      key.addEventListener('transitionend',removePlaying)
+//    })
+//      window.addEventListener('keydown',playSound);

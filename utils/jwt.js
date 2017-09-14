@@ -5,6 +5,12 @@ function signToken(payload, cb){
     jwt.sign(payload, key ,cb);
 }
 
-module.exports ={
-    signToken: signToken
+function verifyToken(token,cb){
+    jwt.verify(token, key, cb);
+
 }
+module.exports ={
+    signToken: signToken,
+    verifyToken: verifyToken
+}
+
