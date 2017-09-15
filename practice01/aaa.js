@@ -1,11 +1,12 @@
 let score=0;
 let colorButton=0;
+
 (function changeScore(p){
     score +=p;
     document.querySelector('.score').innerHTML = ''+score;
 })(0)
 
-function playSound(e){
+function play_Keyboard(e){
     const keyCode=e.keyCode;
     const key = document.querySelector(`div[data-key='${keyCode}']`)
     const audio = document.querySelector(`audio[data-key='${keyCode}']`)
@@ -14,34 +15,28 @@ function playSound(e){
     key.classList.add('playing2');
     audio.play();
     setTimeout(()=>key.classList.remove('playing','playing2'),1000)
-    key.classList.remove('colorI');
-
-    
+    if(key.classList.contains('colorI')&& colorButton<9 ){
+        key.classList.remove('colorI');
+        colorButton-=1   
+    }  
 }
-window.addEventListener('keydown',playSound)
+window.addEventListener('keydown',play_Keyboard)
 
 
-function play(e){
+function play_Click(e){
     const key = document.querySelector(`div[data-key='${e}']`)
     const audio = document.querySelector(`audio[data-key='${e}']`) 
     key.classList.add('playing');
     key.classList.add('playing2');
     audio.play();
     setTimeout(()=>key.classList.remove('playing','playing2'),1000)
+    if(key.classList.contains('colorI')&& colorButton<9 ){
+        key.classList.remove('colorI');
+        colorButton-=1
+    }
 }
 
 
-
-function playingD(e){
-    const key = document.querySelector(`div[data-key='${e}']`)
-    const audio = document.querySelector(`audio[data-key='${e}']`)
-    key.classList.remove('colorI');
-
-
-    
-   
-}
-window.addEventListener('keydown',playingD)
 
 function gameStart(){
 
@@ -57,12 +52,18 @@ function gameStart(){
             index = Math.random() * 100 % 9;
             index = Math.floor(index)
             key = document.querySelector(`div[data-key='${rands[index]}'`)
+
         }while(key.classList.contains("colorI") );
         key.classList.add('colorI');
+
         colorButton+=1;
+        
+        if(colorButton==9){
+            myStopFunction(start);
+        }
+        
     },500)
-    
-    myStopFunction(start);
+
 
 }
 
@@ -70,6 +71,12 @@ function myStopFunction(s) {
 
     clearInterval(s);
 }
+
+// function myrefresh()
+// {
+//      window.location.reload();
+// }
+
 
 // var run =self.setInterval("getIndex()",50)
 // function getIndex(rands){
@@ -102,7 +109,7 @@ function myStopFunction(s) {
 
 
 
-// function playSound(e){
+// function play_Keyboard(e){
 //     const keyCode=e.keyCode;
 //     const key =document.querySelector(div[data-key='${keyCode}']);
 //     const audio =document.querySelector(audio[data-key='${keyCode}']);
@@ -122,4 +129,4 @@ function myStopFunction(s) {
 //    keys.forEach(function(key){
 //      key.addEventListener('transitionend',removePlaying)
 //    })
-//      window.addEventListener('keydown',playSound);
+//      window.addEventListener('keydown',play_Keyboard);
